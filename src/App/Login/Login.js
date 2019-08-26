@@ -1,35 +1,32 @@
 import React from 'react';
 import {ErrorMessage, Field, Form, Formik} from "formik";
-import User from './models/user';
-import UserService from './services/user.service';
+import UserService from '../services/user.service';
 
-class Register extends React.Component {
+class Login extends React.Component {
 
 	constructor(props) {
 		super(props);
-
 	}
 
 	send(values) {
 		UserService
-			.register(values)
-			.then(() => {
-				this.props.history.push('/login');
-			});
+			.login(values.email, values.password)
+			.then(response => response.json())
+			.then(response => {
+				document.cookie = "user=" + response.token;
+				this.props.history.push('/');
+			})
+			.catch(err => console.log(err));
 	}
 
 	render() {
 		return (
 			<div className="container">
+				<h1>Login</h1>
 				<Formik
-					initialValues={{name: '', email: '', password: '', age: ''}}
-					validationSchema={User}
+					initialValues={{email: '', password: ''}}
 					onSubmit={this.send.bind(this)}>
-					<Form>
-						<div className="form-group">
-							<label>Name:</label>
-							<Field name="name" type="text" className="form-control" />
-						</div>
+					<Form className="col-sm-6">
 						<div className="form-group">
 							<label>Email:</label>
 							<Field name="email" type="text" className="form-control" />
@@ -40,10 +37,7 @@ class Register extends React.Component {
 							<Field name="password" type="text" className="form-control" />
 						</div>
 						<div className="form-group">
-							<label>Age:</label> <Field name="age" type="text" className="form-control" />
-						</div>
-						<div className="form-group">
-							<input type="submit" value="Submit" className="btn btn-primary" />
+							<input type="submit" value="Login" className="btn btn-primary" />
 						</div>
 					</Form>
 				</Formik>
@@ -52,4 +46,4 @@ class Register extends React.Component {
 	}
 }
 
-export default Register;
+export default Login;

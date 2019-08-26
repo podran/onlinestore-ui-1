@@ -1,5 +1,5 @@
 import React from 'react';
-import UserService from './services/user.service';
+import UserService from '../services/user.service';
 
 class Profile extends React.Component {
 
@@ -24,7 +24,7 @@ class Profile extends React.Component {
 	render() {
 		return (
 			<div className="container">
-				<h1>User</h1>
+				<h1>My Profile</h1>
 			</div>
 		);
 	}
