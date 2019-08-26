@@ -6,6 +6,7 @@ import Login from "./Login/Login";
 import Homepage from "./Homepage/Homepage";
 import Header from "./Header/Header";
 import Profile from "./Profile/Profile";
+import Category from "./Category/Category";
 
 class App extends React.Component {
   render() {
@@ -18,6 +19,7 @@ class App extends React.Component {
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
                     <Route path="/profile" component={Profile} />
+                    <Route path="/category/:id" component={Category} />
                 </main>
             </div>
         </Router>

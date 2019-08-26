@@ -1,3 +1,5 @@
+import cookie from 'react-cookies';
+
 export default class Network {
 
 	getHeaders() {
@@ -11,7 +13,7 @@ export default class Network {
 	}
 
 	getToken() {
-		return document.cookie.split('user=')[1];
+		return cookie.load('user');
 	}
 
 	send(method, url, data) {

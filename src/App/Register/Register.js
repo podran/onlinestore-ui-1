@@ -13,9 +13,11 @@ class Register extends React.Component {
 	}
 
 	send(values) {
+		this.setState({submitting: true});
 		UserService
 			.register(values)
 			.then(() => {
+				this.setState({submitting: false});
 				this.props.history.push('/login');
 			});
 	}
@@ -46,7 +48,10 @@ class Register extends React.Component {
 							<label>Age:</label> <Field name="age" type="text" className="form-control" />
 						</div>
 						<div className="form-group">
-							<input type="submit" value="Submit" className="btn btn-primary" />
+							<input type="submit"
+							       value="Submit"
+							       className="btn btn-primary"
+							       disabled={this.state.submitting} />
 						</div>
 					</Form>
 				</Formik>
