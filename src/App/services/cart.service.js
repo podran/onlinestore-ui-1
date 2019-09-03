@@ -8,25 +8,46 @@ class CartService extends Network {
 
 	add(productId, quantity) {
 		let products = this.getAll();
-		products.push({
-			id: productId,
-			qty: quantity
-		});
-		cookie.save(CART_COOKIE_NAME, products, {maxAge: CART_COOKIE_MAX_AGE});
+		if(this.isExist(productId)) {
+			products.forEach(product => {
+				if(product.id === productId) {
+					product.qty += quantity;
+				}
+			});
+		} else {
+			products.push({
+				id: productId,
+				qty: quantity
+			});
+		}
+		saveCookie(products);
+	}
+
+	isExist(productId) {
+		return this.getAll().some(product => product.id === productId);
 	}
 
 	remove(productId) {
-
+		let products = this.getAll();
+		products = products.filter(product => product.id !== productId);
+		saveCookie(products);
 	}
 
 	clearAll() {
-		cookie.save(CART_COOKIE_NAME, [], {maxAge: CART_COOKIE_MAX_AGE});
+		saveCookie([]);
 	}
 
 	getAll() {
 		return cookie.load(CART_COOKIE_NAME) || [];
 	}
 
+}
+
+function saveCookie(data) {
+	cookie.save(CART_COOKIE_NAME, data, {
+		maxAge: CART_COOKIE_MAX_AGE,
+		path: '/'
+	});
 }
 
 export default new CartService();

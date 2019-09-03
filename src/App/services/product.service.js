@@ -10,6 +10,12 @@ class ProductService extends Network {
 		return this.send('GET', `/product/${productId}`);
 	}
 
+	getByIds(productIds) {
+		return this.send('POST', '/product/bulk', {
+			ids: productIds
+		});
+	}
+
 }
 
 export default new ProductService();
