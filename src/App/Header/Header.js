@@ -3,15 +3,9 @@ import { Link } from "react-router-dom";
 import './Header.scss';
 
 class Header extends React.Component {
-
-	constructor(props) {
-		super(props);
-
-	}
-
 	render() {
 		return (
-			<header className="Header container">
+			<header className="Header container-fluid">
 				<ul className="menu">
 					<li><Link to="/">Home</Link></li>
 					<li><Link to="/register">Register</Link></li>

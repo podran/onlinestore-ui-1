@@ -9,12 +9,13 @@ import Profile from "./Profile/Profile";
 import Category from "./Category/Category";
 import Product from "./Category/Product/Product";
 import Cart from "./Cart/Cart";
+import Admin from './Admin/Admin';
 
 class App extends React.Component {
   render() {
     return (
         <Router>
-            <div className="container App">
+            <div className="container-fluid App">
                 <Header />
                 <main>
                     <Route path="/" exact component={Homepage} />
@@ -24,6 +25,8 @@ class App extends React.Component {
                     <Route path="/profile" component={Profile} />
                     <Route path="/category/:id" exact component={Category} />
                     <Route path="/category/:categoryId/product/:id" component={Product} />
+
+                    <Route path="/admin" component={Admin} />
                 </main>
             </div>
         </Router>

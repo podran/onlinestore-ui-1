@@ -7,5 +7,5 @@ export default yup.object().shape({
 		.required()
 		.positive()
 		.integer(),
-	email: yup.string().email(),
+	email: yup.string().email()
 });
