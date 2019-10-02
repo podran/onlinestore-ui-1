@@ -24,7 +24,7 @@ class Profile extends React.Component {
 	render() {
 		return (
 			<div className="container">
-				<h1>My Profile</h1>
+				{this.state.user ? 'connected' : 'Not connected'}
 			</div>
 		);
 	}

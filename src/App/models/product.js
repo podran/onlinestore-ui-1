@@ -6,5 +6,5 @@ export default yup.object().shape({
 		.number()
 		.required(),
 		categoryId: yup.string().required('Category is required'),
-		image: yup.string()
+		image: yup.mixed().required('Image is required!')
 });
